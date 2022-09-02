@@ -30,13 +30,13 @@
 <!--フォロー機能-->
   <% if current_user.following?(user) %>
   <div class='row'>
-    <%= link_to user_unfollow_path(user.id), method: :post, class: "btn btn-info" do %>
+    <%= link_to unfollow_path(user.id), method: :post, class: "btn btn-info" do %>
       フォロー外す
     <% end %>
   </div>
   <% else %>
   <div class='row'>
-    <%= link_to user_follow_path(user.id), method: :post, class: "btn btn-success" do %>
+    <%= link_to follow_path(user.id), method: :post, class: "btn btn-success" do %>
       フォローする
     <% end %>
   </div>
