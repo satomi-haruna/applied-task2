@@ -28,4 +28,20 @@ class User < ApplicationRecord
   def get_profile_image
     (profile_image.attached?) ? profile_image : 'no_image.jpg'
   end
+
+  # コントローラで使う？
+  # フォローする
+  def follow(user_id)
+    follower.create(followed_id: user_id)
+  end
+  # フォローを外す
+  def unfollow(user_id)
+    follower.find_by(followed_id: user_id).destroy
+  end
+  # フォローしているか確認
+  def following?(user)
+    following_user.include?(user)
+  end
+
+
 end
