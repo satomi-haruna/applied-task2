@@ -11,7 +11,11 @@ Rails.application.routes.draw do
     resources :book_comments, only: [:create, :destroy]
   end
 
-  resources :users, only: [:index,:show,:edit,:update]
+  # フォロー・フォロワー一覧の方はネストでいいのかな？
+  resources :users, only: [:index,:show,:edit,:update] do
+    get 'follows' => 'relationships#follows', as: 'follows'
+    get 'followers' => 'relationships#followers', as: 'followers'
+  end
 
   # usersへネストさせないことに createとdestroyを含んだfollowとunfollow
   post 'follow/:id' => 'relationships#follow', as: 'follow'
