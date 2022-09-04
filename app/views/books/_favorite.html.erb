@@ -1,15 +1,15 @@
 <!--いいね機能　部分テンプレート-->
 
 <% if book.favorited_by?(current_user) %>
-<td>
-  <%= link_to book_favorites_path(book), method: :delete, :style=>"color:red" do %>
+<!--<td>-->
+  <%= link_to book_favorites_path(book), method: :delete, remote: true, :style=>"color:red" do %>
     ♥<%= book.favorites.count %>
   <% end %>
-</td>
+<!--</td>-->
 <% else %>
-<td>
-  <%= link_to book_favorites_path(book), method: :post do %>
+<!--<td>-->
+  <%= link_to book_favorites_path(book), method: :post, remote: true do %>
     ♡<%= book.favorites.count %>
   <% end %>
-</td>
+<!--</td>-->
 <% end %>

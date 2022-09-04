@@ -18,7 +18,10 @@
         <td><%= link_to book.title,book %></td>
         <td><%= book.body %></td>
         <!--いいね機能 → 部分テンプレートに変更-->
-        <%= render "books/favorite", book: book %>
+        <!--部分的に更新するためにidをつける-->
+        <td id="favorite_buttons_<%= book.id %>">
+          <%= render "books/favorite", book: book %>
+        </td>
         <td>コメント数：<%= book.book_comments.count %></td>
       </tr>
     <% end %>
