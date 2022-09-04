@@ -1,3 +1,13 @@
+<!--模範解答より、このビューはuser/indexやbook/indexを使用できる-->
+<!--＜% if @range == "User" %＞
+      <h3>Users search for "＜%= @word%＞"</h3>
+      ＜%= render 'users/index', users: @users＞
+      ↑user/indexのusersをsearchの@usersに置き換える、searchの@usersは別の変数名の方がいいかな
+    ＜% elsif @range == "Book" %＞
+      <h3>Books search for "＜%= @word %＞"</h3>
+      ＜%= render 'books/index', books: @books %＞
+      usersと同様に、book/indexのbooksをsearch結果の変数に置き換えて、一覧画面を使用する！コードがこれだけで済む-->
+
 <h2><%= @range %>s search for "<%= @word %>"</h2>
 
 <table class="table">
