@@ -8,6 +8,10 @@ class BookCommentsController < ApplicationController
     comment.book_id = book.id
     comment.save
     redirect_back(fallback_location: root_path)
+    # バリデーションつける際に使用 ↓
+    # else
+    #   render 'books/show'
+    # end
   end
 
   def destroy

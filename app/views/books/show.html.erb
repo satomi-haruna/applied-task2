@@ -17,10 +17,6 @@
           </td>
           <td><%= link_to @book.title, @book %></td>
           <td><%= @book.body %></td>
-            <% if @book.user == current_user %>
-              <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
-              <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
-            <% end %>
           <!--いいね機能-->
           <!--部分的に更新するためにidをつける-->
           <td id="favorite_buttons_<%= @book.id %>">
@@ -29,21 +25,13 @@
           <td>
             コメント数：<%= @book.book_comments.count %>
           </td>
+            <% if @book.user == current_user %>
+              <td><%= link_to 'Edit', edit_book_path(@book), class: "btn btn-sm btn-success" %></td>
+              <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
+            <% end %>
         </tr>
-        <% @book.book_comments.each do |book_comment| %>
-        <tr>
-          <td>
-            <%= image_tag book_comment.user.get_profile_image, size:"100x100" %>
-            <%= book_comment.user.name %>
-          </td>
-          <td><%= book_comment.comment %></td>
-          <% if book_comment.user == current_user %>
-          <td>
-            <%= link_to 'Destroy', book_book_comment_path(book_comment.book, book_comment), method: :delete, class: "btn btn-sm btn-danger" %>
-          </td>
-          <% end %>
-        </tr>
-        <% end %>
+        <!--コメント一覧 部分テンプレートへ変更-->
+        <%= render "books/comment", book: @book %>
       </table>
       <div class="form">
         <%= form_with model:[@book,@book_comment] do |f| %>
