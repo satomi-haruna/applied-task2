@@ -3,6 +3,8 @@ class SearchesController < ApplicationController
 
   def search
     @range = params[:range]
+    # 検索結果表示の画面で使用するには、変数変換して使用する
+    @word = params[:word]
 
     if @range == "User"
       # ifで1つ目のプルダウンの選択結果からの分岐
