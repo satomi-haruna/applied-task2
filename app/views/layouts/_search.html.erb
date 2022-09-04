@@ -1,0 +1,24 @@
+<!--検索機能の部分テンプレート-->
+  <div class='container px-5 px-sm-0'>
+    <div class='row'>
+      <div class='col-md-3'>
+        <p></p>
+      </div>
+      <div class='col-md-8 offset-md-1'>
+        <% if user_signed_in? %>
+        <div>
+          <%= form_with url: search_path, local: true, method: :get do |f| %>
+            <!--検索内容をwordとしてアクションへ送る-->
+            <%= f.text_field :word %>
+            <!--プルダウンを作る-->
+            <!--UserモデルとBookモデルを選択できる、選択したモデルをrangeとしてアクションに送る-->
+            <%= f.select :range, options_for_select([["User"],["Book"]]) %>
+            <!--検索手法を定義、選択した手法をseachとしてアクションに送る-->
+            <%= f.select :search, options_for_select([["完全一致","perfect"],["前方一致","forward"],["後方一致","backward"],["部分一致","partial"]]) %>
+            <%= f.submit "検索", class: "btn" %>
+          <% end %>
+        </div>
+        <% end %>
+      </div>
+    </div>
+  </div>

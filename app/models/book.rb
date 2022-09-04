@@ -12,4 +12,21 @@ class Book < ApplicationRecord
     favorites.exists?(user_id: user.id)
   end
 
+
+  # 検索方法の分岐
+  def self.looks(search, word)
+    if search == "perfect"
+      # 投稿＝titleでいいのかな？、参照title LIKE、titleカラムこんな？って
+      @book = Book.where("title LIKE?", "#{word}")
+    elsif search == "forward"
+      @book = Book.where("title LIKE?", "#{word}%")
+    elsif search == "backward"
+      @book = Book.where("title LIKE?", "%#{word}")
+    elsif search == "partial"
+      @book = Book.where("title LIKE?", "%#{word}%")
+    else
+      @book = Book.all
+    end
+  end
+
 end

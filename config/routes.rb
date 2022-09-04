@@ -20,5 +20,9 @@ Rails.application.routes.draw do
   # usersへネストさせないことに createとdestroyを含んだfollowとunfollow
   post 'follow/:id' => 'relationships#follow', as: 'follow'
   post 'unfollow/:id' => 'relationships#unfollow', as: 'unfollow'
+
+  # 検索ボタンが押されると、Searchesコントローラのsearchアクションが実行される
+  get 'search' => 'searches#search'
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
