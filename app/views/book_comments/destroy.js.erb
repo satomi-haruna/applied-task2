@@ -1,0 +1,2 @@
+<!--指定したセレクタ(=id)のみHTMLをrenderで部分的に更新-->
+$('#comments').html("<%= j(render "book_comments/comment", book: @book) %>");

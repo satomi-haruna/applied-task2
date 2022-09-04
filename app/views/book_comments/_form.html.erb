@@ -1,7 +1,7 @@
 <!--コメント投稿フォーム　部分テンプレート じゃなくていい気が？-->
 
-<!--form_withにlocal: trueをつけなければjsファイルを探しに行く＝非同期通信になる-->
-<%= form_with model:[book,book_comment] do |f| %>
+<!--form_withはデフォルト→local: true、local: falseをつけるとjsファイルを探しに行く＝非同期通信になる-->
+<%= form_with model:[book,book_comment], local: false do |f| %>
   <%= f.text_area :comment, rows: "5", class: 'form-control book_comment' %>
   <%= f.submit "送信" %>
 <% end %>

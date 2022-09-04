@@ -30,20 +30,15 @@
               <td><%= link_to 'Destroy', @book, method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger"%></td>
             <% end %>
         </tr>
-        <!--コメント一覧 部分テンプレートへ変更-->
-        <!--部分的に更新するためにidをつける-->
-        <div id="comments">
-          <%= render "book_comments/comment", book: @book %>
-        </div>
       </table>
+      <!--コメント一覧 部分テンプレートへ変更-->
+      <!--部分的に更新するためにidをつける-->
+      <div id="comments">
+        <%= render "book_comments/comment", book: @book %>
+      </div>
       <!--非同期通信のために、コメント投稿に対してもidをつけておいてみる-->
       <div class="form" id="new_comment">
-        <!--form_withにlocal: trueをつけなければjsファイルを探しに行く＝非同期通信になる
-        local: falseをつけるという説も？-->
-        <%= form_with model:[@book,@book_comment], data: {remote: true} do |f| %>
-          <%= f.text_area :comment, rows: "5", class: 'form-control book_comment' %>
-          <%= f.submit "送信" %>
-        <% end %>
+        <%= render "book_comments/form", book: @book, book_comment: @book_comment %>
       </div>
     </div>
   </div>
