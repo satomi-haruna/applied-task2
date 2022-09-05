@@ -1,4 +1,5 @@
 <!--指定したセレクタ(=id)のみHTMLをrenderで部分的に更新-->
+$('#comments-counter').html("コメント数：<%= @book.book_comments.count %>");
 $('#comments').html("<%= j(render "book_comments/comment", book: @book) %>");
 <!--フォームを送信したあとにフォームの値を空にする-->
 $("textarea").val('');
